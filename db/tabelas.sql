@@ -1,0 +1,80 @@
+USE [BookStore]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Autor](
+	[IdAutor] [int] IDENTITY(1,1) NOT NULL,
+	[Nome] [varchar](200) NOT NULL,
+ CONSTRAINT [PK_Autor] PRIMARY KEY CLUSTERED 
+(
+	[IdAutor] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Editora](
+	[IdEditora] [int] IDENTITY(1,1) NOT NULL,
+	[Nome] [varchar](200) NOT NULL,
+ CONSTRAINT [PK_Editora] PRIMARY KEY CLUSTERED 
+(
+	[IdEditora] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Genero](
+	[IdGenero] [int] IDENTITY(1,1) NOT NULL,
+	[Descricao] [varchar](200) NOT NULL,
+ CONSTRAINT [PK_Genero] PRIMARY KEY CLUSTERED 
+(
+	[IdGenero] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Livro](
+	[IdLivro] [int] NOT NULL,
+	[Titulo] [varchar](200) NOT NULL,
+	[DataPublicacao] [datetime] NOT NULL,
+	[Paginas] [int] NOT NULL,
+	[Descricao] [varchar](max) NULL,
+	[Sinopse] [varchar](max) NULL,
+	[ImagemCapa] [varchar](max) NULL,
+	[Link] [varchar](300) NULL,
+	[IdAutor] [int] NOT NULL,
+	[IdGenero] [int] NOT NULL,
+	[IdEditora] [int] NOT NULL,
+ CONSTRAINT [PK_Livro] PRIMARY KEY CLUSTERED 
+(
+	[IdLivro] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Livro]  WITH CHECK ADD  CONSTRAINT [FK_Livro_Autor1] FOREIGN KEY([IdAutor])
+REFERENCES [dbo].[Autor] ([IdAutor])
+GO
+
+ALTER TABLE [dbo].[Livro] CHECK CONSTRAINT [FK_Livro_Autor1]
+GO
+
+ALTER TABLE [dbo].[Livro]  WITH CHECK ADD  CONSTRAINT [FK_Livro_Editora] FOREIGN KEY([IdEditora])
+REFERENCES [dbo].[Editora] ([IdEditora])
+GO
+
+ALTER TABLE [dbo].[Livro] CHECK CONSTRAINT [FK_Livro_Editora]
+GO
+
+ALTER TABLE [dbo].[Livro]  WITH CHECK ADD  CONSTRAINT [FK_Livro_Genero] FOREIGN KEY([IdGenero])
+REFERENCES [dbo].[Genero] ([IdGenero])
+GO
+
+ALTER TABLE [dbo].[Livro] CHECK CONSTRAINT [FK_Livro_Genero]
+GO
+
+
