@@ -38,7 +38,7 @@ CREATE TABLE [dbo].[Genero](
 GO
 
 CREATE TABLE [dbo].[Livro](
-	[IdLivro] [int] NOT NULL,
+	[IdLivro] [int] IDENTITY(1,1) NOT NULL,
 	[Titulo] [varchar](200) NOT NULL,
 	[DataPublicacao] [datetime] NOT NULL,
 	[Paginas] [int] NOT NULL,
