@@ -1,7 +1,7 @@
 ﻿using BookStore.Domain.Interface.Service;
 using BookStore.Domain.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System;
 
 namespace BookStore.WebApp.Controllers
 {
@@ -15,38 +15,77 @@ namespace BookStore.WebApp.Controllers
             _service = service;
         }
 
-        // GET: api/Livro
         [HttpGet]
-        public IEnumerable<LivroViewModel> Get()
+        public IActionResult Get()
         {
-            return _service.BuscarTodosLivros();
+            try
+            {
+                var resultado = _service.BuscarTodos();
+                return Ok(resultado);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
-        // GET: api/Livro/5
-        [HttpGet("{id}", Name = "Get")]
-        public LivroViewModel Get(int id)
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            return _service.BuscarLivroPorId(id);
+
+            try
+            {
+                var resultado = _service.BuscarPorId(id);
+                return Ok(resultado);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
-        // POST: api/Livro
         [HttpPost]
-        public void Post([FromBody] LivroViewModel livro)
+        public IActionResult Post([FromBody] LivroViewModel livro)
         {
-            _service.NovoLivro(livro);
+
+            try
+            {
+                var resultado = _service.Novo(livro);
+                return Ok(resultado);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
-        // PUT: api/Livro/5
         [HttpPut]
-        public void Put([FromBody] LivroViewModel livro)
+        public IActionResult Put([FromBody] LivroViewModel livro)
         {
-            _service.AtualizarLivro(livro);
+            try
+            {
+                var resultado = _service.Atualizar(livro);
+                return Ok(resultado);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            try
+            {
+                _service.Deletar(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
     }
+
 }

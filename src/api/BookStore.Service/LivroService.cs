@@ -18,38 +18,41 @@ namespace BookStore.Service
             _repository = repository;
         }
 
-        public LivroViewModel AtualizarLivro(LivroViewModel livro)
+        public LivroViewModel Atualizar(LivroViewModel livro)
         {
             var model = _mapper.Map<LivroViewModel, Livro>(livro);
             model = _repository.Atualizar(model);
+            _repository.SaveChanges();
             return _mapper.Map<Livro, LivroViewModel>(model);
         }
 
-        public LivroViewModel BuscarLivroPorId(int idLivro)
+        public LivroViewModel BuscarPorId(int idLivro)
         {
             var livro = _repository.BuscarPorId(idLivro);
             return _mapper.Map<Livro, LivroViewModel>(livro);
         }
 
-        public IEnumerable<LivroViewModel> BuscarTodosLivros()
+        public IEnumerable<LivroViewModel> BuscarTodos()
         {
             var livros = _repository.BuscarTodos();
 
             return _mapper.Map<IEnumerable<Livro>,IEnumerable<LivroViewModel>>(livros);
         }
 
-        public LivroViewModel DeletarLivro(LivroViewModel livro)
+        public LivroViewModel Deletar(int id)
         {
-            var model = _mapper.Map<LivroViewModel, Livro>(livro);
+            var model = _repository.BuscarPorId(id);
 
             _repository.Deletar(model);
-            return livro;
+            _repository.SaveChanges();
+            return _mapper.Map<Livro, LivroViewModel>(model);
         }
 
-        public LivroViewModel NovoLivro(LivroViewModel livro)
+        public LivroViewModel Novo(LivroViewModel livro)
         {
             var model = _mapper.Map<LivroViewModel, Livro>(livro);
             model = _repository.Novo(model);
+            _repository.SaveChanges();
             return _mapper.Map<Livro, LivroViewModel>(model);
         }
     }

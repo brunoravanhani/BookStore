@@ -5,11 +5,11 @@ namespace BookStore.Domain.Interface.Service
 {
     public interface ILivroService
     {
-        IEnumerable<LivroViewModel> BuscarTodosLivros();
-        LivroViewModel BuscarLivroPorId(int idLivro);
-        LivroViewModel NovoLivro(LivroViewModel livro);
-        LivroViewModel AtualizarLivro(LivroViewModel livro);
-        LivroViewModel DeletarLivro(LivroViewModel livro);
+        IEnumerable<LivroViewModel> BuscarTodos();
+        LivroViewModel BuscarPorId(int idLivro);
+        LivroViewModel Novo(LivroViewModel livro);
+        LivroViewModel Atualizar(LivroViewModel livro);
+        LivroViewModel Deletar(int id);
 
     }
 }

@@ -17,8 +17,14 @@ namespace BookStore.WebApp.ExtensionMethods
             services.AddDbContext<BookStoreContext>();
 
             services.AddTransient<ILivroRepository, LivroRepository>();
+            services.AddTransient<IAutorRepository, AutorRepository>();
+            services.AddTransient<IEditoraRepository, EditoraRepository>();
+            services.AddTransient<IGeneroRepository, GeneroRepository>();
 
             services.AddTransient<ILivroService, LivroService>();
+            services.AddTransient<IAutorService, AutorService>();
+            services.AddTransient<IEditoraService, EditoraService>();
+            services.AddTransient<IGeneroService, GeneroService>();
         }
 
         public static void AddAutoMapper(this IServiceCollection services)
@@ -26,6 +32,9 @@ namespace BookStore.WebApp.ExtensionMethods
             var config = new MapperConfiguration(c =>
             {
                 c.CreateMap<Livro, LivroViewModel>();
+                c.CreateMap<Autor, AutorViewModel>().ReverseMap();
+                c.CreateMap<Editora, EditoraViewModel>().ReverseMap();
+                c.CreateMap<Genero, GeneroViewModel>().ReverseMap();
             });
 
             IMapper mapper = config.CreateMapper();
