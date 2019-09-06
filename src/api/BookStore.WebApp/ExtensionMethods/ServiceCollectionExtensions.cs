@@ -8,7 +8,7 @@ using BookStore.Infra.Repository;
 using BookStore.Service;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BookStore.WebApi.ExtensionMethods
+namespace BookStore.WebApp.ExtensionMethods
 {
     public static class ServiceCollectionExtensions
     {
@@ -31,6 +31,6 @@ namespace BookStore.WebApi.ExtensionMethods
             IMapper mapper = config.CreateMapper();
 
             services.AddSingleton(mapper);
-        }   
+        }
     }
 }

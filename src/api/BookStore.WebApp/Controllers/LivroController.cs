@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BookStore.Domain.Interface.Service;
+﻿using BookStore.Domain.Interface.Service;
 using BookStore.Domain.ViewModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
-namespace BookStore.WebApi.Controllers
+namespace BookStore.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
