@@ -2,7 +2,7 @@
 
 namespace BookStore.Domain.Interface.Repository
 {
-    public interface ILivroRepository : IRepository<Livro>
+    public interface IAutorRepository : IRepository<Autor>
     {
     }
 }

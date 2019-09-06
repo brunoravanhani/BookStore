@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BookStore.Domain\BookStore.Domain.csproj" />
     <ProjectReference Include="..\BookStore.Service\BookStore.Service.csproj" />
+    <ProjectReference Include="..\BookStore.Infra\BookStore.Infra.csproj" />
   </ItemGroup>
 
 </Project>

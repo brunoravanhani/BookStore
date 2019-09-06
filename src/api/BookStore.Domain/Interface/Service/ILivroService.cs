@@ -9,7 +9,7 @@ namespace BookStore.Domain.Interface.Service
         LivroViewModel BuscarLivroPorId(int idLivro);
         LivroViewModel NovoLivro(LivroViewModel livro);
         LivroViewModel AtualizarLivro(LivroViewModel livro);
-        int DeletarLivro(int idLivro);
+        LivroViewModel DeletarLivro(LivroViewModel livro);
 
     }
 }

@@ -3,6 +3,7 @@ using BookStore.Domain.Interface.Repository;
 using BookStore.Domain.Interface.Service;
 using BookStore.Domain.Model;
 using BookStore.Domain.ViewModel;
+using BookStore.Infra.Context;
 using BookStore.Infra.Repository;
 using BookStore.Service;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,9 @@ namespace BookStore.WebApi.ExtensionMethods
     {
         public static void AddDI(this IServiceCollection services)
         {
-            services.AddSingleton<ILivroRepository, LivroRepository>();
+            services.AddDbContext<BookStoreContext>();
+
+            services.AddTransient<ILivroRepository, LivroRepository>();
 
             services.AddTransient<ILivroService, LivroService>();
         }
