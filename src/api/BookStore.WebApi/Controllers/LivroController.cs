@@ -28,21 +28,23 @@ namespace BookStore.WebApi.Controllers
 
         // GET: api/Livro/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public LivroViewModel Get(int id)
         {
-            return "value";
+            return _service.BuscarLivroPorId(id);
         }
 
         // POST: api/Livro
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] LivroViewModel livro)
         {
+            _service.NovoLivro(livro);
         }
 
         // PUT: api/Livro/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Put([FromBody] LivroViewModel livro)
         {
+            _service.AtualizarLivro(livro);
         }
 
         // DELETE: api/ApiWithActions/5
