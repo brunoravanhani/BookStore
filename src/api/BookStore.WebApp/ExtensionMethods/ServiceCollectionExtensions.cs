@@ -33,7 +33,7 @@ namespace BookStore.WebApp.ExtensionMethods
         {
             var config = new MapperConfiguration(c =>
             {
-                c.CreateMap<Livro, LivroViewModel>();
+                c.CreateMap<Livro, LivroViewModel>().ReverseMap();
                 c.CreateMap<Autor, AutorViewModel>().ReverseMap();
                 c.CreateMap<Editora, EditoraViewModel>().ReverseMap();
                 c.CreateMap<Genero, GeneroViewModel>().ReverseMap();
