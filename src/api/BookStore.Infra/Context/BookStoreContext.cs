@@ -23,7 +23,6 @@ namespace BookStore.Infra.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=BookStore;User Id=sa;Password=123456");
             }
         }
 

@@ -6,15 +6,17 @@ using BookStore.Domain.ViewModel;
 using BookStore.Infra.Context;
 using BookStore.Infra.Repository;
 using BookStore.Service;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookStore.WebApp.ExtensionMethods
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddDI(this IServiceCollection services)
+        public static void AddDI(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<BookStoreContext>();
+            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]));
 
             services.AddTransient<ILivroRepository, LivroRepository>();
             services.AddTransient<IAutorRepository, AutorRepository>();
