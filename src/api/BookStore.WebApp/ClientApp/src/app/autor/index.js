@@ -8,33 +8,74 @@ export class Autor extends Component {
     autores: [],
     autorEscolhido: null,
     autorNome: '',
+    autorId: null,
     modal: false
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchAutores();
+  }
+
+  fetchAutores = async () => {
     const autores = await Api.buscar();
     this.setState({autores});
   }
 
+  onChange = (e) => {
+    const {name, value} = e.target;
+    const newState = {};
+    newState[name] = value;
+    this.setState({...newState});
+  }
+
+  
+  salvarAutor = async () => {
+    const {autorNome, autorId} = this.state;
+    if (autorNome && autorNome !== '') {
+      if (!autorId) {
+        await Api.novo({
+          nome: autorNome
+        });
+      } else {
+        await Api.atualizar({
+          idAutor: autorId,
+          nome: autorNome
+        });
+      }
+      this.fetchAutores();
+      this.toggleModal();
+    }
+  }
+
+  excluirAutor = async (id) => {
+    await Api.excluir(id);
+    this.fetchAutores();
+  }
+  
+  novoAutor = () => {
+    this.setState({
+      autorEscolhido: null,
+      autorNome: '',
+      autorId: null,
+    });
+    this.toggleModal();
+  }
+
   editarAutor = (id) => {
     const autor = this.state.autores.find(x => x.idAutor === id);
-    this.setState({ autorEscolhido: autor, autorNome: autor.nome });
-    this.toggle();
+    this.setState({ autorEscolhido: autor, autorNome: autor.nome, autorId: autor.idAutor });
+    this.toggleModal();
   }
-
-  salvarAutor = () => {
-
-  }
-
   cancelar = () => {
     this.setState( {
       autorEscolhido: null,
-      autorNome: ''
+      autorNome: '',
+      autorId: null,
     });
-    this.toggle();
+    this.toggleModal();
   }
 
-  toggle = () => {
+  toggleModal = () => {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
@@ -48,7 +89,7 @@ export class Autor extends Component {
         </td>
         <td>
           <Button outline color="primary" onClick={() => this.editarAutor(autor.idAutor)}>Editar</Button>{' '}
-          <Button outline color="danger">Excluir</Button>
+          <Button outline color="danger" onClick={() => this.excluirAutor(autor.idAutor)}>Excluir</Button>
         </td>
       </tr>
     );
@@ -60,7 +101,7 @@ export class Autor extends Component {
         <h1>Autores Cadastrados</h1>
         
         <div style={{marginBottom: 10}}>
-          <Button color="primary" onClick={this.toggle}>Cadastrar Novo</Button>
+          <Button color="primary" onClick={this.novoAutor}>Cadastrar Novo</Button>
         </div>
 
         <table className='table table-striped'>
@@ -75,18 +116,18 @@ export class Autor extends Component {
           </tbody>
         </table>
 
-        <Modal isOpen={this.state.modal} toggle={this.cancelar} >
-          <ModalHeader toggle={this.cancelar}>Autor</ModalHeader>
+        <Modal isOpen={this.state.modal} toggleModal={this.cancelar} >
+          <ModalHeader toggleModal={this.cancelar}>Autor</ModalHeader>
           <ModalBody>
             <Form>
               <FormGroup>
-              <Label for="nomeAutor">Nome do Autor</Label>
-              <Input type="text" name="autor" id="nomeAutor" placeholder="Escreva o nome do Autor"  value={this.state.autorNome}/>
+              <Label for="autorNome">Nome do Autor</Label>
+              <Input type="text" name="autorNome" id="autorNome" placeholder="Escreva o nome do Autor"  value={this.state.autorNome} onChange={this.onChange}/>
             </FormGroup>
             </Form>
           </ModalBody>
           <ModalFooter>
-            <Button color="success" outline onClick={this.toggle}>Do Something</Button>{' '}
+            <Button color="success" outline onClick={this.salvarAutor}>Salvar</Button>{' '}
             <Button color="secondary" outline onClick={this.cancelar}>Cancel</Button>
           </ModalFooter>
         </Modal>

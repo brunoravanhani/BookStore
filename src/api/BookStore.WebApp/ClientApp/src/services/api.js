@@ -11,7 +11,7 @@ export class Api {
       let uri = '/' + endpoint;
       let response;
 
-      if (method === 'GET') {
+      if (method === 'GET' || method === 'DELETE') {
         if (params !== undefined) {
           uri += '?' + stringify(params);
         }
@@ -27,7 +27,7 @@ export class Api {
       try {
         return await response.json();
       } catch (e) {
-        return {};
+        return null;
       }
     }
 }

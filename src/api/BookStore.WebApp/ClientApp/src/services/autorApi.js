@@ -15,3 +15,7 @@ export const novo = async (obj) => {
 export const atualizar = async (obj) => {
     return await Api.getData('PUT', 'api/autor', obj);
 }
+
+export const excluir = async (id) => {
+    return await Api.getData('DELETE', `api/autor/${id}`, null);
+}
