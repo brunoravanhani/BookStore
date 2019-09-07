@@ -67,7 +67,7 @@ export class Livro extends Component {
         idEditora: this.state.idEditora,
         idGenero: this.state.idGenero,
         dataPublicacao: formatarData(this.state.dataPublicacao),
-        imagemCapa: null,
+        imagemCapa: this.state.imagemCapa,
         link: this.state.link
       };
 
@@ -103,6 +103,7 @@ export class Livro extends Component {
       paginas: livro.paginas,
       link: livro.link,
       dataPublicacao: moment(livro.dataPublicacao).format('YYYY-MM-DD'),
+      imagemCapa: livro.imagemCapa,
       idAutor: livro.idAutor,
       idEditora: livro.idEditora,
       idGenero: livro.idGenero,
@@ -124,6 +125,10 @@ export class Livro extends Component {
   renderLivro = (livro, index) => {
     return (
       <tr key={index}>
+        <td>
+          {(livro.imagemCapa && livro.imagemCapa !== '') &&
+            <img src={livro.imagemCapa} alt="Capa do Livro" style={{maxWidth: 100}}/>}
+        </td>
         <td style={{width: '80%'}}>
           {livro.titulo}
         </td>
@@ -209,6 +214,17 @@ export class Livro extends Component {
                 <Label for="link">Link para comprar</Label>
                 <Input type="text" name="link" id="link" placeholder="Escreva o link de venda" value={this.state.link} onChange={this.onChange}/>
               </FormGroup>
+              <FormGroup>
+                <Label for="imagemCapa">Link da imagem</Label>
+                <Input type="text" name="imagemCapa" id="imagemCapa" placeholder="Link da imagem da capa" value={this.state.imagemCapa} onChange={this.onChange}/>
+              </FormGroup>
+              <div>
+                {
+                  (this.state.imagemCapa && this.state.imagemCapa !== '') &&
+                    <img src={this.state.imagemCapa} alt="Capa do Livro" style={{maxWidth: '90%'}}/>
+
+                }
+              </div>
             </Form>
           </ModalBody>
           <ModalFooter>
