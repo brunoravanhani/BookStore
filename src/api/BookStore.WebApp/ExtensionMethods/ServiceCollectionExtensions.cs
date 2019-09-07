@@ -16,7 +16,7 @@ namespace BookStore.WebApp.ExtensionMethods
     {
         public static void AddDI(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(configuration["ConnectionStrings:BookStoreContext"]));
 
             services.AddTransient<ILivroRepository, LivroRepository>();
             services.AddTransient<IAutorRepository, AutorRepository>();

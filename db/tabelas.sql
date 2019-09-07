@@ -1,3 +1,5 @@
+create database [BookStore]
+
 USE [BookStore]
 GO
 
