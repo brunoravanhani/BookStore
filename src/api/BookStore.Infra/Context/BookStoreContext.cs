@@ -64,8 +64,6 @@ namespace BookStore.Infra.Context
             {
                 entity.HasKey(e => e.IdLivro);
 
-                entity.Property(e => e.IdLivro).ValueGeneratedNever();
-
                 entity.Property(e => e.DataPublicacao).HasColumnType("datetime");
 
                 entity.Property(e => e.Descricao).IsUnicode(false);
