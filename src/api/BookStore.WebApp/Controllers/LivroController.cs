@@ -51,7 +51,7 @@ namespace BookStore.WebApp.Controllers
             try
             {
                 var resultado = _service.Novo(livro);
-                return Ok();
+                return Ok(resultado);
             }
             catch (Exception e)
             {
