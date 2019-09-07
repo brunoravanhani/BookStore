@@ -5,7 +5,7 @@ export class Api {
       
       let headers = new Headers({
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       });
       
       let uri = '/' + endpoint;

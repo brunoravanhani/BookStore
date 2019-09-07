@@ -49,7 +49,6 @@ export class Livro extends Component {
     
     const newState = {};
     newState[name] = value;
-    console.log(name, value)
     this.setState({...newState});
   }
 
@@ -94,8 +93,20 @@ export class Livro extends Component {
   }
 
   abrirModalEdicao = (id) => {
-    // const editora = this.state.editoras.find(x => x.idEditora === id);
-    // this.setState({ editoraEscolhida: editora, nomeEditora: editora.descricao, idEditora: editora.idEditora });
+    const livro = this.state.livros.find(x => x.idLivro === id);
+    this.setState({
+      livroEscolhido: livro,
+      idLivro: livro.idLivro,
+      titulo: livro.titulo,
+      descricao: livro.descricao,
+      sinopse: livro.sinopse,
+      paginas: livro.paginas,
+      link: livro.link,
+      dataPublicacao: moment(livro.dataPublicacao).format('YYYY-MM-DD'),
+      idAutor: livro.idAutor,
+      idEditora: livro.idEditora,
+      idGenero: livro.idGenero,
+    });
     this.toggleModal();
   }
   cancelar = () => {
@@ -110,15 +121,15 @@ export class Livro extends Component {
     }));
   }
 
-  renderLivro(livro) {
+  renderLivro = (livro, index) => {
     return (
-      <tr>
+      <tr key={index}>
         <td style={{width: '80%'}}>
           {livro.titulo}
         </td>
         <td>
           <Button outline color="primary" onClick={() => this.abrirModalEdicao(livro.idLivro)}>Editar</Button>{' '}
-          <Button outline color="danger">Excluir</Button>
+          <Button outline color="danger" onClick={() => this.excluir(livro.idLivro)}>Excluir</Button>
         </td>
       </tr>
     );
@@ -221,6 +232,6 @@ function Dropdown({list, name, property, onChange, message, valueProperty, value
 }
 
 function formatarData(stringData) {
-  console.log(stringData)
-  return stringData;
+  const data = moment(stringData)
+  return data.toJSON();
 }

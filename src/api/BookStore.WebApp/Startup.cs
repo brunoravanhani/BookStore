@@ -73,6 +73,8 @@ namespace BookStore.WebApp
                     template: "{controller}/{action=Index}/{id?}");
             });
 
+            app.UseCors();
+            
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
