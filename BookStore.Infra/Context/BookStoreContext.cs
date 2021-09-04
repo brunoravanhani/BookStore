@@ -1,5 +1,6 @@
 ﻿using BookStore.Domain.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace BookStore.Infra.Context
 {
@@ -21,14 +22,12 @@ namespace BookStore.Infra.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-            }
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 25));
+            optionsBuilder.UseMySql(serverVersion, options => options.MigrationsAssembly("BookStore.Api"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity<Autor>(entity =>
             {
@@ -84,20 +83,17 @@ namespace BookStore.Infra.Context
                 entity.HasOne(d => d.IdAutorNavigation)
                     .WithMany(p => p.Livro)
                     .HasForeignKey(d => d.IdAutor)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Livro_Autor1");
+                    .OnDelete(DeleteBehavior.ClientSetNull);
 
                 entity.HasOne(d => d.IdEditoraNavigation)
                     .WithMany(p => p.Livro)
                     .HasForeignKey(d => d.IdEditora)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Livro_Editora");
+                    .OnDelete(DeleteBehavior.ClientSetNull);
 
                 entity.HasOne(d => d.IdGeneroNavigation)
                     .WithMany(p => p.Livro)
                     .HasForeignKey(d => d.IdGenero)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Livro_Genero");
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
         }
     }
