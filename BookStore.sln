@@ -9,11 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.Infra", "BookStor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.Service", "BookStore.Service\BookStore.Service.csproj", "{C288DAC7-E46D-49DD-BDA6-07056718CCD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.WebApp", "BookStore.WebApp\BookStore.WebApp.csproj", "{0990355F-2268-4DEE-8A48-113375CDC175}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.Test", "BookStore.Test\BookStore.Test.csproj", "{E65212F1-AB08-4049-8FF6-54482D3B4156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Test", "BookStore.Test\BookStore.Test.csproj", "{E65212F1-AB08-4049-8FF6-54482D3B4156}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Api", "BookStore.Api\BookStore.Api.csproj", "{B05D5035-FD47-41BD-AED2-F269AC31DA57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.Api", "BookStore.Api\BookStore.Api.csproj", "{B05D5035-FD47-41BD-AED2-F269AC31DA57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,18 +59,6 @@ Global
 		{C288DAC7-E46D-49DD-BDA6-07056718CCD1}.Release|x64.Build.0 = Release|Any CPU
 		{C288DAC7-E46D-49DD-BDA6-07056718CCD1}.Release|x86.ActiveCfg = Release|Any CPU
 		{C288DAC7-E46D-49DD-BDA6-07056718CCD1}.Release|x86.Build.0 = Release|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Debug|x64.Build.0 = Debug|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Debug|x86.Build.0 = Debug|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Release|x64.ActiveCfg = Release|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Release|x64.Build.0 = Release|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Release|x86.ActiveCfg = Release|Any CPU
-		{0990355F-2268-4DEE-8A48-113375CDC175}.Release|x86.Build.0 = Release|Any CPU
 		{E65212F1-AB08-4049-8FF6-54482D3B4156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E65212F1-AB08-4049-8FF6-54482D3B4156}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E65212F1-AB08-4049-8FF6-54482D3B4156}.Debug|x64.ActiveCfg = Debug|Any CPU
