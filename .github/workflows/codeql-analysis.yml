@@ -32,6 +32,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        dotnet-version: ['3.0', '3.1.x', '5.0.x' ]
         language: [ 'csharp' ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
         # Learn more:
