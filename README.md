@@ -14,3 +14,6 @@ Run migrations
 dotnet ef database update 
 
 ```
+
+
+TESTE
